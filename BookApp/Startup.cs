@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using BookApp.Interfaces;
 using BookApp.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace BookApp
 {
@@ -42,7 +43,9 @@ namespace BookApp
          //Register dapper in scope  
          services.AddScoped<IDapperService, DapperService>();
 
-      }
+         
+
+        }
 
       // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
       public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

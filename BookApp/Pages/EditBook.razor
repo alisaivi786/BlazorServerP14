@@ -66,12 +66,16 @@
                   </label><br />
                }
             </td>
+            
             <td>
                &#8201;
-               <a class="btn btn-primary"
-                  href='/addAuthor/@book.ISBN'>
-                  &#8194;Add author&#8194;
-               </a><br />
+               <AuthorizeView Roles="NotAllowed">
+                   <a class="btn btn-primary"
+                      href='/addAuthor/@book.ISBN'>
+                      &#8194;Add author&#8194;
+                   </a><br />
+               </AuthorizeView>
+               
             </td>
          </tr>
          <tr>
@@ -139,12 +143,11 @@
 </form>
 @if (DialogIsOpen)
 {
-   <Dialog
-      Caption="Update a book"
+    <DialogCustom Caption="Update a book"
       Message="@message"
       OnClose="@OnDialogClose"
-      Type="Dialog.Category.SaveNot">
-   </Dialog>
+      Type="DialogCustom.Category.SaveNot">
+   </DialogCustom>
 }
 
 @code  {

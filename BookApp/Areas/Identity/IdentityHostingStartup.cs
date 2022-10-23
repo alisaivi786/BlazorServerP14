@@ -20,8 +20,11 @@ namespace BookApp.Areas.Identity
                         context.Configuration.GetConnectionString("DefaultConnection")));
 
                 services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddRoles<IdentityRole>()  //Add identity User Role 
                     .AddEntityFrameworkStores<BookAppContext>();
             });
+
+            
         }
     }
 }

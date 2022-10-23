@@ -70,8 +70,8 @@ namespace BookApp.Data
          return totBook;
       }
 
-      public Task<List<BookAuPub>> ListAll(int skip,
-             int take, string orderBy, string direction = "DESC",
+      public Task<List<BookAuPub>> ListAll(int? skip,
+             int? take, string orderBy, string direction = "DESC",
              string search = "")
       {
          var books = Task.FromResult(_dapperService.
@@ -86,5 +86,18 @@ namespace BookApp.Data
          commandType: CommandType.Text));
          return books;
       }
-   }
+
+        public Task<List<BookAuPub>> ListAll()
+        {
+            var books = Task.FromResult(_dapperService.
+         GetAll<BookAuPub>($"SELECT B.ISBN,Title, " +
+         $"FName + ' ' + LName AuthorName, PubYear, PurchDate, " +
+         $"P.Name PubName FROM Book B LEFT OUTER JOIN" +
+         $" Publisher P ON B.PubId = P.Id LEFT OUTER JOIN " +
+         $"BookAuthor BA ON B.ISBN = BA.ISBN LEFT OUTER JOIN " +
+         $"Author A ON BA.AuthorId = A.Id;", null,
+         commandType: CommandType.Text));
+            return books;
+        }
+    }
 }
